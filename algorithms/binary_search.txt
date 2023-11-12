@@ -1,0 +1,10 @@
+// binary search to find greatest a s.t.  a*a <= N.
+    ll hi = N, lo = 0;
+    ll a  = 1;
+    while (hi -lo > 1){
+        a = (hi+lo)/2;
+        if (a*a <= N){
+            lo = a;
+        } else hi = a;
+    }
+    if (hi == a){a = a-1;}

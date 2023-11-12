@@ -35,6 +35,6 @@ int main()
     rep(i,N) {
         int a;
         cin >> a;
-        x[a] ++;
+        x[a]++;
     }
 }
