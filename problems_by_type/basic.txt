@@ -1,0 +1,2 @@
+ABC 305: 
+min_element(A.begin(),A.end()) for vector and min_element(A,A+N) for array
