@@ -1,1 +1,1 @@
-308 C stable sort preserve order
+308 C stable sort preserves order of indices

@@ -1,0 +1,11 @@
+Statement : If ni are pairwise coprime and ai are any 
+integers, then the system 
+
+    x= a_1 mod n1
+    .
+    .
+    x= a_k mod nk
+
+has a unique solution up to congruent modulo N = n1*...*nk.
+
+

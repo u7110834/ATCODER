@@ -11,3 +11,4 @@ vector<long long> enum_divisors(long long N) {
     sort(res.begin(), res.end());
     return res;
 }
+
