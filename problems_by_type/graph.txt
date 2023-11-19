@@ -1,2 +1,4 @@
 ABC311 C: functional graph
 ABC304 C: DFS
+Kyoten 078
+ABC 302 C: Hamiltonian, next_permutation. dfs cant be used.

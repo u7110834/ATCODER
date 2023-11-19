@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -15,68 +17,40 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define lint long long
 
-auto putline = [](string s = "========"){
-    cout << s << endl;
-};
 
-struct Node{
-    bool seen = false;
-    set<pair<int,int>> adjacent;
-};
-
-bool isConnected(int a, int b, map<int, Node> G){
-    Node A = G[a];
-    G[a].seen = true;
-    Node B = G[b];
-    set<pair<int,int>> adj = A.adjacent;
-    for (pair<int,int> p : adj){
-        if (G[p.first].seen == false){
-            G[p.first].seen == true;
-            if (find(G[p.first].adjacent.begin(),G[p.first].adjacent.end(),b) !=G[p.first].adjacent.end()){
-            
-            return true;
-        } else{
-            return isConnected(p.first, b, G);
-        }
-        } else {continue;}
-        
-    }
-    return false;
-}
-
-void remove_edge(int a, int b,map<int, Node>  &G){
-    auto adj = G[a].adjacent;
-    for (auto it = adj.begin(); it != adj.end(); it++){
-        if ((*it).first == b){adj.erase(it);}
-    }
-    auto adj_b = G[a].adjacent;
-    for (auto it = adj_b.begin(); it != adj_b.end(); it++){
-        if ((*it).first == b){adj_b.erase(it);}
-    }
-}
 int main()
 {   
-    int N, M , K;
-    cin >> N >> M >> K;
-    map<int, Node> G;
-    for (int i = 0; i < M; i++){
-        int A,B,w;
-        cin >> A >> B >> w;
-        G[A].adjacent.insert({B,w});
-        G[B].adjacent.insert({A,w});
-    }
-        bool connect = true;
-        for (int i = 0; i < N; i++){
-            for (int j = i+1; j < N; j++){
-                if (!isConnected(i,j,G)) {connect = false; break;}
-            } 
+    int N, M;
+    cin >> N >> M;
+    string s;
+    string t;
+    cin >> s >> t;
+    map<char, set<char>> mp;
+    for (int i = M-1; i >= 0; i--){
+        if (mp.find(t[i]) == mp.end()){
+                mp.insert({t[i],{}});
+            }
+        auto it = mp.find(t[i]);
+        if (i == M-1){
+            for (int j = 0; j < M ;j++);
+            mp.insert({t[i],{}});
         }
-    cout << connect << endl;
+    }
+    bool ok  = 1;
+    if (s[0] != t[0]){
+        ok = false;
+    }
+    //cout << mp.at('C').size() << endl;
+    for (int i = 0; i < N-1; i++){
+        //cout << (!mp.at(s[i]).contains(s[i+1])) << endl;
+        if (mp.find(s[i]) == mp.end() || !mp.at(s[i]).contains(s[i+1])) ok = false;
+    } 
+    cout << (ok? "Yes": "No") << endl;
 }

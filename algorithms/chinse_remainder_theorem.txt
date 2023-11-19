@@ -1,0 +1,60 @@
+Statement : If ni are pairwise coprime and ai are any 
+integers, then the system 
+
+    x= a_1 mod n1
+    .
+    .
+    x= a_k mod nk
+
+has a unique solution up to congruent modulo N = n1*...*nk.
+more generally N = lcm(ni)
+
+// Extended Euclidean algorithm
+long long extGCD(long long a, long long b, long long &x, long long &y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    long long d = extGCD(b, a%b, y, x);
+    y -= a/b * x;
+    return d;
+}
+
+// 中国剰余定理
+// Given the system 
+// x = b1 mod m1
+// x = b2 mod m2
+// リターン値を (r, m) とすると解は x ≡ r (mod. m)
+// 解なしの場合は (0, -1) をリターン
+pair<long long, long long> ChineseRem_2(long long b1, long long m1, long long b2, long long m2) {
+  long long p, q;
+  long long d = extGcd(m1, m2, p, q); // p is inv of m1/d (mod. m2/d)
+  if ((b2 - b1) % d != 0) return make_pair(0, -1);
+  long long m = m1 * (m2/d); // lcm of (m1, m2)
+  long long tmp = (b2 - b1) / d * p % (m2/d);
+  long long r = mod(b1 + m1 * tmp, m);
+  return make_pair(r, m);
+}
+
+// 中国剰余定理
+// More than two equations in the system
+// Store bi as a vector
+// リターン値を (r, m) とすると解は x ≡ r (mod. m)
+// 解なしの場合は (0, -1) をリターン
+pair<long long, long long> ChineseRem(const vector<long long> &b, const vector<long long> &m) {
+  long long r = 0, M = 1;
+  for (int i = 0; i < (int)b.size(); ++i) {
+    long long p, q;
+    long long d = extGcd(M, m[i], p, q); // p is inv of M/d (mod. m[i]/d)
+    if ((b[i] - r) % d != 0) return make_pair(0, -1);
+    long long tmp = (b[i] - r) / d * p % (m[i]/d);
+    r += M * tmp;
+    M *= m[i]/d;
+  }
+  return make_pair(mod(r, M), M);
+}
+
+
+
+

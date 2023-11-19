@@ -34,5 +34,6 @@ int main()
         cout << *it << endl;
     }
     cout << *s.begin() << endl;
-    cout << *s.rbegin() << endl;
+    cout << "rbegin : " << *s.rbegin() << endl;
+    cout << "prev(end) : " << *prev(s.end()) << endl;
 }

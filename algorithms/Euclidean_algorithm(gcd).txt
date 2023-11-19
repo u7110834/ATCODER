@@ -1,0 +1,19 @@
+// for nonnegative integers a, b with a >= b,
+// gcd(a,b) = gcd(b, a%b), where 
+// gcd(b, a%b) = b if a%b = 0
+// Time complexity: 5d, where d is the number of digits
+// of the smaller integer. So O(log a)
+
+
+long long euclidean_gcd(long long a, long long b){
+    if (b == 0) return a;
+    else {
+        ll mn = min (a,b);
+        ll mx = max(a,b)
+        return euclidean_gcd(mn,mx % mn);
+    }
+}
+
+// eg.
+// gcd(111,30) -> gcd(30,21) -> gcd(30,9) 
+// -> gcd(9,3) -> gcd(3,1) -> gcd(3,0) -> 3

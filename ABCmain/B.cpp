@@ -30,23 +30,12 @@ int main()
 {   
     int N;
     cin >> N;
-    int D[N];
-    rep(i,N) cin >> D[i];
-    int sum = 0;
-    rep(i,N){
-        if (i+1 < 10){
-        for (int j = 1;  j <= D[i]; j++){
-            if (i+1 == j || j == (i+1)*10+(i+1)){
-                sum++;
-            }
-        }
-        }else{
-           for (int j = 1;  j <= D[i]; j++){
-            if ((i+1)%10 == (i+1)/10 && (i+1 == j || (i+1)%10 == j)){
-                sum++;
-            }
-        } 
-        }
-    }
-    cout << sum << endl;
+    vector<int> A(N);
+    rep(i,N) cin >> A[i];
+    sort(A.begin(), A.end());
+    int mx = A[N-1];
+    auto it = lower_bound(A.begin(),A.end(), mx);
+    int dist = distance(A.begin(), it);
+    cout << A[dist-1] << endl; 
+    
 }

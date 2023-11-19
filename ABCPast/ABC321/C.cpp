@@ -20,7 +20,7 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define ll long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -28,15 +28,27 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    string s;
-    cin >> s;
-    bool islike = true;
-    rep(i,s.size()-1){
-        if (s[i] <= s[i+1]) {
-            islike = false;
-            break;
+    // bit search
+    // 9876543210 -> 1
+    // 9876543210> 2*10^9, so overflow
+    // need to use ll
+    // 2^10 -1 ways
+
+    int K;
+    cin >> K;
+    vector<ll> ans;
+    for (int i = 1; i < 1<<10; i++){
+        ll num = 0;
+        ll pow = 1;
+        for (int j = 0; j < 10; j++){
+            if (i & 1 << j) {
+                num += pow*j;
+                pow *=10;
+            }
         }
+        if (num != 0) ans.push_back(num);
     }
-    if (islike) cout << "Yes" << endl;
-    else cout << "No" << endl;
+    sort(ans.begin(),ans.end());
+    //sort(ans.begin(),ans.end());
+    cout << ans[K-1] << endl; // exclude 0
 }

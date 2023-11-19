@@ -1,0 +1,9 @@
+// Assume a^p does not overflow
+long long power(int a, int p){
+    long long ans = 1;
+    while(p>0){
+        ans *= a;
+        p--;
+    }
+    return ans;
+}

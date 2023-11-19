@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstring>
 #include <algorithm>
+#include <queue>
 using namespace std;
 
 // #include <atcoder/all>
@@ -26,7 +27,40 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+// BFS using que
 int main()
 {   
-    
+    int n, m;
+    // vertices labelled 0,1,...,N-1
+    cin >> n >> m;
+    vector<vector<int>> g(n);
+    for (int i = 0 ; i < m; i++){
+        int a, b;
+        cin >> a >> b;
+
+        g[a].push_back(b);
+        g[b].push_back(a);
+
+        vector<int> dist(n,-1);
+
+        queue<int> que;
+
+        dist[0] = 0;
+        que.push(0);
+
+        while(!que.empty()){
+            // vertex to check
+            int v = que.front();
+            que.pop();
+
+            for (int next_v : g[v]){
+                if (dist[next_v] != -1){// if checked
+                    continue;
+                }
+
+                dist[next_v] = dist[v]+1;
+                que.push(next_v);
+            }
+        }
+    }
 }

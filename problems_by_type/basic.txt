@@ -1,2 +1,8 @@
 ABC 305: 
 min_element(A.begin(),A.end()) for vector and min_element(A,A+N) for array
+
+Kyoten 067:
+base conversion, corner case when N = 0;
+
+ABC302 B:
+Mendoi

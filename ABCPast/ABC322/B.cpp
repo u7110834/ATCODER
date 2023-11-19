@@ -28,11 +28,14 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    int N, M;
-    string S, T;
-    cin >> N >> M >> S >> T;
-    cout << S << " " << T << endl;
-    int ans  = 3;
-    if (T.substr(0,N) == S) ans-=2;
-    if (T.substr(M-N,N) == S) ans--;
+    int N,M;
+    cin >> N >> M;
+    string s,t;
+    cin >> s >> t;
+    int ans = 3;
+    if (t.substr(0,N) == s) ans -=2;
+    reverse(t.begin(),t.end());
+    reverse(s.begin(), s.end());
+    if (t.substr(0,N) == s) ans--;
+    cout << ans << endl;
 }

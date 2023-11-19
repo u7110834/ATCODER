@@ -20,21 +20,28 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define ll long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-int x[1000000000+10] ={};
-int sum[1000000000+10] ={};
 int main()
 {   
     int N,M;
     cin >> N >> M;
-    rep(i,N) {
-        int a;
-        cin >> a;
-        x[a]++;
+    vector<int> A(N);
+    rep(i,N){
+        cin >> A[i];
     }
+    sort(A.begin(),A.end());
+    int res = 0;
+    int r = 0;
+    for (int i = 0; i < N;i++){
+        while (r < N && A[r] < A[i] + M){ // <= A[i+1] + M
+            r++; 
+            res = max(res,r-i);// A is sorted
+        }
+    }
+    cout << res << endl;
 }

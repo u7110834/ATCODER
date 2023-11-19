@@ -26,10 +26,6 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-int main()
-{   
-    #include <bits/stdc++.h>
-using namespace std;
 int main() {
     int n;
     cin >> n;
@@ -37,7 +33,7 @@ int main() {
     for(int i = 0; i < n; i++) {
         int a, b;
         cin >> a >> b;
-        ab.emplace_back(a, a + b);
+        ab.emplace_back(a, a + b); // constructs a pair
     }
     vector<int> p(n);
     iota(p.begin(), p.end(), 0); // (0,1,2,3,...) indices
