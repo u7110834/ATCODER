@@ -53,7 +53,7 @@ int BinarySearch_index(vector<int> vec, int key) {
 int main()
 {   
     vector<int> v = {2,3,4,5,6,1,3,2,4};
-    sort(v.begin(),v.end());
+    sort(v.begin(),v.end()); // the list needs to be sorted.
     // std::binary_search() only checks if the key is contained
     // in a given vecotor. returns bool
     if (binary_search(v.begin(),v.end(),3))cout << "found 3" << endl;

@@ -20,42 +20,32 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
-}
-
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
+    ll N, M, P;
+    cin >> N >> M >> P;
+
+    vector<ll> A(N),B(M), B_sum(M+1,0);
+    rep(i,N) cin >> A[i];
+    rep(i,M) {
+        cin >> B[i];
+    }
+
+    sort(B.begin(),B.end());
+    rep1(i,M) B_sum[i] = B_sum[i-1] + B[i-1];
+    ll ans = 0;
+    rep(i,N){
+        int bound = P-A[i];
+
+        ll idx = lower_bound(B.begin(),B.end(), bound)-B.begin();
+        ans += (ll) A[i]*idx + (ll) B_sum[idx] + (ll) P*(M-idx);// ll
+    }
+    cout << ans << endl;
 }

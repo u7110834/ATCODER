@@ -26,36 +26,39 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
-}
-
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
+    int N, M;
+    cin >> N >> M;
+
+    vector<set<int>> sets(M);
+
+    rep(i,M) {
+        int c;
+        cin >> c;
+        rep(j,c){
+            int a;
+            cin >> a;
+            sets[i].insert(a);
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < (1 << M); i++){
+        set<int> total;
+        for (int j = 0; j < M; j++){
+            if (i & 1 << j){
+                total.insert(sets[j].begin(), sets[j].end());
+            }
+        }
+        bool ok = 1;
+        for (int k = 1; k <= N; k++){
+            if (!total.contains(k)){
+                ok = 0;
+                break;
+            }
+        }
+        cnt += ok;
+    }
+
+    cout << cnt << endl;
 }

@@ -39,6 +39,7 @@ int main()
     C.insert(C.end(),B.begin(),B.end());
 
     sort(C.begin(),C.end());
+    // binary search
     rep(i,N){
         auto it = lower_bound(C.begin(),C.end(),A[i]);
         cout << distance(C.begin(),it) +1 << " ";
@@ -48,8 +49,8 @@ int main()
         auto it = lower_bound(C.begin(),C.end(),B[i]);
         cout << distance(C.begin(),it) +1 << " ";
     }
-    
-    cout << endl;
+
+    // cout << endl;
     // vector<int> idx(N+M);
     // iota(idx.begin(),idx.end(),0);
     // auto comp = [&](int i, int j){
@@ -57,13 +58,13 @@ int main()
     // };
     // sort(idx.begin(),idx.end(),comp);
     // rep(i,N){
-    //     auto it = find(idx.begin(),idx.end(),i);
-    //     cout << distance(idx.begin(), it)+1 << " ";
+    //     auto it = lower_bound(idx.begin(),idx.end(),i);
+    //     cout << distance(idx.begin(), it)+1 << " "; // need to be sorted
     // }
     // cout << endl;
 
     // rep(i,M){
-    //     auto it = find(idx.begin(),idx.end(),i+N);
+    //     auto it = lower_bound(idx.begin(),idx.end(),i+N);
     //     cout << distance(idx.begin(), it)+1 << " ";
     // }
     // cout << endl;

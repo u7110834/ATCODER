@@ -6,8 +6,8 @@
 #include <algorithm>
 using namespace std;
 
-// #include <atcoder/all>
-// using namespace atcoder;
+#include <atcoder/all>
+using namespace atcoder;
 
 // 第一引数と第二引数を比較し、第一引数(a)をより大きい/小さい値に上書き
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
@@ -26,10 +26,24 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+
 int main()
 {   
-    int N, M, P;
-    cin >> N >> M >> P;
-    if (N < M) cout << 0 << endl;
-    else cout << 1+ (N-M)/P << endl;
+    int T;
+    cin >> T;
+    // no need to check if prime
+    while(T--){
+        lint N;
+        cin >> N;
+        for (lint x = 2;;x++){
+            if (N % x) continue;
+            if ((N / x) % x == 0){ // x = p
+                cout << x << " " << N/x/x << endl;
+                break;
+            } else {
+                cout << (lint) round(sqrt(N/x)) << " " << x << endl;
+                break;
+            }
+        }
+    }
 }

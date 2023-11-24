@@ -3,6 +3,7 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
+#include <numeric>      // std::iota
 #include <algorithm>
 using namespace std;
 
@@ -20,42 +21,27 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
+long long factorial(int N){
+    return (N == 1 || N == 0)? 1LL : factorial(N-1)*N;
 }
 
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
+    int total = factorial(9);
+    int c[3][3];
+    rep(i,3) rep(j,3) cin >> c[i][j];
+    
+    vector<int> ord(9);
+    iota(ord.begin(), ord.end(), 0);
+    do{
+        int i =1;
+    } while(next_permutation(ord.begin(),ord.end()));
+    
 }

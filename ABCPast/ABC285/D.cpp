@@ -26,36 +26,41 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
-}
-
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
+    // directed graph
+    int N;
+    cin >> N;
+    map<string, vector<string>> g;
+    map<string, int> indeg; 
+
+    rep(i,N){
+        string s,t;
+        cin >> s >> t;
+        if (!indeg.contains(s)){
+            indeg[s] = 0;
+        }
+        indeg[t]++;
+        g[s].push_back(t);
+    }
+
+    // condition 2
+    // if is acyclic then no
+    stack<string> st;
+    for (auto it : indeg){
+        if (it.second == 0){
+            st.push(it.first);
+        }
+    }
+    while (!st.empty()){
+        string v = st.top();
+        st.pop();
+        for (string u : g[v]){
+            indeg[u]--;
+            if (indeg[u] == 0) st.push(u);
+            N--;
+        }
+    }
+    if (N == 0) cout << "Yes" << endl;
+    else cout << "No" << endl; 
 }

@@ -6,8 +6,8 @@
 #include <algorithm>
 using namespace std;
 
-// #include <atcoder/all>
-// using namespace atcoder;
+#include <atcoder/all>
+using namespace atcoder;
 
 // 第一引数と第二引数を比較し、第一引数(a)をより大きい/小さい値に上書き
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
@@ -28,8 +28,23 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    int N, M, P;
-    cin >> N >> M >> P;
-    if (N < M) cout << 0 << endl;
-    else cout << 1+ (N-M)/P << endl;
+    //頂点数が X の連結成分について考えると、適当な全域木を取ることにより 
+    // 最大X−1 本は残すことができます
+    // Find connected components
+    int N, M;
+    cin >> N >> M;
+    dsu d(N);
+    rep(i,M){
+        int A,B;
+        cin >> A >> B;
+        A--; B--;
+        d.merge(A,B);
+    }
+    auto gs = d.groups();
+    //int gsum = gs.size();
+    int ans = M;
+    for (auto g : gs){
+        ans -= g.size()-1;
+    }
+    cout << ans << endl;
 }

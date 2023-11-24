@@ -26,36 +26,30 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
-}
-
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
+    int N,M;
+    cin >> N >> M;
+
+    vector<int> a(M);
+    rep(i,M) cin >> a[i];
+
+    vector<bool> connected(N,0);
+    rep(i,M) connected[a[i]] = 1;
+
+    set<int> component;
+
+    for (int i = 1; i <= N; i++){
+        if (connected[i]){
+            component.insert(i);
+        } else{
+            component.insert(i);
+            for (auto it = component.rbegin(); it != component.rend(); it++){
+                cout << *it << " ";
+            }
+            component.clear();
+        }
+    }
+    
+    cout << endl;
 }

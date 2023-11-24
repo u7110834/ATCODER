@@ -26,36 +26,27 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-/*
-Check if s contains t as a substring
--1 if it does not
-Otherwise return the start index of t in s
-*/
-int s_contains_t(string s, string t){
-    if (s.size() < t.size()){
-        return -1;
-    }
-    for (int j = 0; j <= s.size()-t.size(); j++){
-        string sub = s.substr(j,t.size());
-        if (sub == t) {
-            return j;
-        }
-    }
-    return -1;
-}
-
 int main()
 {   
-    string s = "012345";
-    cout << s.substr(6,1) << endl; // 0
-    //indexing
-    int k = 3; // remove the kth element
-    cout << s.substr(0, k-1) + s.substr(k, s.size()-k) << endl;
-    s.erase(s.begin()+k);// remove kth element
-    cout << s << endl;
-    s.insert(3,"3"); // insert "2" to the 3rd element
-    cout << s << endl;
-    // or equivalently
-    s.insert(0, 4 ,'c');
-    cout << s << endl;
-}
+    lint N,A,B;
+    cin >> N >> A >> B;
+    string s;
+    cin >> s;
+    lint mn = (1LL << 63)-1;
+    //cout << mn << endl;
+    for (int i = 0; i < N; i++){
+        //A
+        lint sum = 0;
+        sum += (lint) A*i;
+        string scopy = s;
+        scopy = s.substr(i,N-i) + s.substr(0,i);
+        int check = N/2;
+        int okcnt = 0;
+        for (int j = 0; j < check; j++){
+            if (scopy[j] == scopy[N-1-j]) okcnt++;
+        }
+        sum += (lint) B*(check-okcnt);
+        chmin(mn,sum);
+    }
+    cout << mn << endl;
+} 
