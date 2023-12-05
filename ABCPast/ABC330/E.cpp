@@ -30,5 +30,17 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> A(N);
+    rep(i,N) cin >> A[i];
+    int mn = *min_element(A.begin(),A.end());
+    mn = max(mn-1,0);
+    while (Q--){
+        int i , x;
+        cin >> i >> x;
+        int olx = A[i-1];
+        if (x < ol)
+    }
     
 }

@@ -32,5 +32,38 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    // deque
+    int N;
+    cin >> N;
+    vector<int> a(N);
+    rep(i,N) cin >> a[i];
+    sort(all(aac));
+    deque<int> deq;
+    rep(i,N) deq.push_back(a[i]);
+    int end = 0;
+    while(true){
+        int check_cnt = 0;
+        int size = (int) deq.size();
+        while(check_cnt != size){
+            int fr = deq.front();
+            if (fr == end+1) {
+                deq.pop_front();
+                end++;
+                check_cnt++;
+            } else if (fr <= end){
+                deq.pop_front();
+                deq.push_back(fr);
+                check_cnt++;
+            } else break;
+        }
+        if (deq.size() > 1) {
+            deq.pop_back();
+            deq.pop_back();
+            end++;
+        } else {
+            break;
+        }
+    }
 
+    cout << end << endl;
 }

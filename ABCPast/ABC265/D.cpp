@@ -16,13 +16,15 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
 #define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -30,5 +32,21 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    
+    int N; 
+    ll P,Q,R;
+    cin >> N;
+    cin >> P >> Q >> R;
+    vector<ll> A(N), sum(N+1);
+    sum[0] = 0;
+    rep(i,N) cin >> A[i];
+    // sum, bs
+    rep(i,N) sum[i+1] = sum[i]+A[i];
+
+    bool ok = false;
+    for (int i = 1; i < N - 1; i++){
+        ll rem = P - sum[i];
+        if (binary_search(sum.begin(), sum.begin()+ i-1, rem)){
+            if (binary_search(sum.begin))
+        }
+    }    
 }

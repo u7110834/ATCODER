@@ -5,6 +5,7 @@
 #include <cstring>
 #include <numeric>      // std::iota
 #include <algorithm>
+#include <bitset>
 using namespace std;
 
 // #include <atcoder/all>
@@ -30,7 +31,37 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-int main()
-{   
-
+// a^n mod を計算する using binary search
+long long modpow(long long a, long long n, long long mod) {
+    long long res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+    }
+    return res;
 }
+
+// mod. m での a の逆元 a^{-1} を計算する
+// m assumed to be prime 
+// Algorithm using Fermat's little theorem
+long long modinv_fermat(long long a, long long mod) {
+    return modpow(a, mod - 2, mod);
+}
+
+int main()
+{ 
+    int N;
+    cin >> N;
+
+    vector<int> A(100009);
+    for(int i = 1; i <= N; i++) cin >> A[i];
+
+    int XOR_Sum = A[1];
+
+    for (int i = 2; i <= N; i++) XOR_Sum = (XOR_Sum ^ A[i]);
+
+    if (XOR_Sum != 0) cout << "First" << endl;
+    else cout << "Second" << endl;
+}
+    

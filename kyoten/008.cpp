@@ -28,7 +28,30 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+constexpr ll mod = 1000000007;
 int main()
 {   
+    int N;
+    cin >> N;
     
+    string s;
+    cin >> s;
+
+    ll dp[N+1][7+1];
+    memset(dp,0LL,sizeof(dp));
+
+    string want = "atcoder";
+
+    dp[0][0] = 1;
+    for (int i = 1; i <= N; i++){
+        dp[i][0] = 1;
+        char c = s[i-1];
+        for (int j = 1; j <= 7; j++){
+            dp[i][j] = dp[i-1][j];
+            if (c ==  want[j-1]){
+                dp[i][j] = (dp[i][j] + dp[i-1][j-1]) % mod;
+            }
+        }
+    }
+    cout << dp[N][7] << endl;
 }

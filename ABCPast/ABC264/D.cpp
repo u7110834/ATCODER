@@ -32,5 +32,38 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    string target = "atcoder";
+    string s;
+    cin >> s;
+    string sorted_target = target;
+    sort(all(sorted_target));
+    map<string,bool> seen;
+    map<string,int> dmap;
+    do {
+        seen[sorted_target] = false;
+    } while(next_permutation(all(sorted_target)));
 
+    // BFS
+    queue<string> que;
+    que.push(s);
+    seen[s] = true;
+    dmap[s] = 0;
+    while(!que.empty()){
+        string fr = que.front();
+        que.pop();
+        if (fr == target){
+            break;
+        }
+        for (int i = 0; i < 6; i++){
+            string next_str = fr;
+            swap(next_str[i],next_str[i+1]);
+            if (seen[next_str]) continue;
+            else {
+                seen[next_str] = true;
+                dmap[next_str] = dmap[fr]+1;
+                que.push(next_str);
+            }
+        }
+    }
+    cout << dmap[target] << endl;
 }

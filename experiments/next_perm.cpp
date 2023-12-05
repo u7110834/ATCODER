@@ -22,4 +22,9 @@ int main(){
     sort(s3.begin(),s3.end());
     do cout << s3 << endl;
     while (next_permutation(s3.begin(),s3.end()));
+
+    string s4 ="acc";
+    sort(s4.begin(),s4.end());
+    do cout << s4 << endl;
+    while (next_permutation(s4.begin(),s4.end()));
 }

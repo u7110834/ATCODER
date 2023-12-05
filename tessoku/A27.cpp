@@ -16,19 +16,33 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
 #define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
-int main()
-{   
-    
+long long euclidean_gcd(long long a, long long b){
+    if (b == 0) return a;
+    else {
+        ll mn = min (a,b);
+        ll mx = max(a,b);
+        return euclidean_gcd(mn,mx % mn);
+    }
 }
+
+int main()
+{  
+    ll A, B;
+    cin >> A >> B;
+    cout << euclidean_gcd(A,B) << endl;
+}
+    

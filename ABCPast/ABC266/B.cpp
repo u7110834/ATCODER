@@ -16,13 +16,15 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
 #define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -30,5 +32,15 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    
+    const ll mod = 998244353;
+    ll N;
+    cin >> N;
+    ll ans;
+    if (N >= 0) ans = N%mod;
+    else if (N % mod == 0){
+        ans = 0;
+    } else {
+        ans = mod - abs(N)%mod;
+    }
+    cout << ans << endl;
 }

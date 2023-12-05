@@ -30,7 +30,45 @@ auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+bool Gcontains(vector<vector<int>> &g, int root, int target,vector<int> &ans,vector<bool> &seen){
+    seen[root] = true;
+    if (root == target) {
+        ans.push_back(root);
+        return true;
+    }
+    for (int next : g[root]){
+        if (seen[next]) continue;
+        seen[next] = true;
+        if (Gcontains(g,next,target,ans,seen)){
+            ans.push_back(root);
+            return true;
+        }
+    }
+    return false;
+}
+
+
 int main()
 {   
+    int N,X,Y;
+    cin >> N >> X >> Y;
+    X--;Y--;
+    vector<vector<int>> g(N);
+    rep(i,N-1){
+        int u,v;
+        cin >> u >> v;
+        u--; v--;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
 
+    // dfs
+    vector<bool> seen(N,0);
+    vector<int> ans;
+    Gcontains(g,X,Y,ans,seen);
+    reverse(all(ans));
+    rep(i, ans.size()){
+        cout << ans[i]+1 << " "; 
+    }
+    cout << endl;
 }

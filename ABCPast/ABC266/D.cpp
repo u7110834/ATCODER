@@ -32,5 +32,37 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N;
+    cin >> N;
+    vector<vector<int>> snuke(100001, vector<int>(2,-1)); // t, x, a;
+    rep(i,N){
+        int t,x,a;
+        cin >> t >> x >> a;
+        snuke[t][0] = x;
+        snuke[t][1] = a;
+    }
+    vector<vector<ll>> dp(100001, vector<ll>(5,-1));
+    dp[0][0] = 0; // if -1 then cannot get there;
+    vector<int> dx = {-1, 0 , 1};
+    for (int i = 1; i <= 100000; i++){
+        for (int j = 0; j < 5; j++){
+            ll now = -1;
+            // left or right or not move;
+            
+            for (int k : dx){
+                int prev_x = j - k;
+                if (prev_x >= 0 && prev_x < 5 && dp[i-1][prev_x] != -1){
+                    ll compare = dp[i-1][prev_x];
+                    if (snuke[i][0] == j){
+                        compare += (ll) snuke[i][1];
+                    }
+                    chmax(now, compare);
+                }
+                
+            }
+            dp[i][j] = now;
+        }
+    }
 
+    cout << *(max_element(all(dp[100000]))) << endl;
 }

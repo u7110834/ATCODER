@@ -32,5 +32,29 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    ll N,A,B;
+    cin >> N >> A >> B;
+    ll P,Q,R,S;
+    cin >> P >> Q >> R >> S;
 
+    for (ll i = P; i <= Q; i++){
+        for (ll j = R; j <= S; j++){
+            // check if painted
+            ll k = i-A;
+            ll k2 = j-B;
+            if (abs(k) != abs(k2)){
+                // false
+                cout << '.';
+            } else if (k == k2){
+                if (max(1-A,1-B) <= k && k <= max(N-A,N-B)){
+                    cout << '#';
+                } else cout << '.';
+            } else {
+                if (max(1-A,B-N) <= k && k <= max(N-A,B-1)){
+                    cout << '#'; 
+                } else cout << '.';
+            }
+        }
+        cout << endl;
+    }
 }

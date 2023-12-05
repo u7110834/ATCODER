@@ -32,5 +32,45 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    string s;
+    cin >> s;
+    vector<bool> standing(10);
+    rep(i,10) standing[i] = (s[i] == '1');
+    if (standing[0]) {
+        cout << "No" << endl;
+        return 0;
+    }
+    vector<int> cs(7);
+    cs[0] = standing[6];
+    cs[1] = standing[3];
+    cs[2] = standing[7] + standing[1];
+    cs[3] = standing[0] + standing[4];
+    cs[4] = standing[8] + standing[2];
+    cs[5] = standing[5];
+    cs[6] = standing[9];
 
+    bool yes = false;
+    for (int i = 1; i <= 5; i++){
+        if (cs[i] == 0){
+            int ok = 0;
+            for (int j = 0; j < i; j++){
+                if (cs[j] >= 1) {
+                    ok++;
+                    break;
+                }
+            }
+            for (int j = i+1; j <= 6; j++){
+                if (cs[j] >= 1) {
+                    ok++;
+                    break;
+                }
+            }
+            if (ok == 2) {
+                yes = true;
+                break;
+            }
+        }
+    }
+
+    cout << (yes? "Yes" : "No") << endl;
 }

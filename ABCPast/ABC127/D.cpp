@@ -3,7 +3,6 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
-#include <numeric>      // std::iota
 #include <algorithm>
 using namespace std;
 
@@ -21,8 +20,7 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
-#define ll long long
+#define lint long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -30,5 +28,27 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    
+    int N,M;
+    cin >> N >> M;
+    vector<int> A(N);
+    rep(i,N) cin >> A[i];
+    sort(A.begin(),A.end());
+    int mn = A[0];
+    int num = 1;
+    while(M--){
+        int b,c;
+        cin >> b >> c;
+        if (mn > c) continue;
+        int n = upper_bound(A.begin(),A.end(), c) - A.begin();
+        cout << n << endl;
+        num = min(b,n);
+        mn = c;
+
+    }
+    lint ans = 0;
+    ans += (lint) mn*num;
+    for (int i = num; i < N; i++){
+        ans += A[i];
+    }
+    cout << ans << endl;
 }

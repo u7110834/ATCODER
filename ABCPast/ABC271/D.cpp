@@ -32,5 +32,40 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N,S;
+    cin >> N >> S;
+    vector<int> a(N+1), b(N+1);
+    rep1(i,N) cin >> a[i] >> b[i];
+    vector<vector<pair<bool,bool>>> dp(N+1,vector<pair<bool,bool>>(S+1,{0,0}));
+    // x true if yes, y true if H
+    dp[0][0] = {1,0};
+    for (int i = 1; i <= N; i++){
+        for (int j = 0; j <= S; j++){
+            if (j - a[i] >= 0) {
+                if (dp[i-1][j-a[i]].first) {
+                    dp[i][j].first = true;
+                    dp[i][j].second= true;
+                }
+            }
+            if (j - b[i] >= 0) {
+                if (dp[i-1][j-b[i]].first) dp[i][j].first = true;
+            }
+        }
+    }
+    if (!dp[N][S].first) cout << "No" << endl;
+    else {
+        cout << "Yes" << endl;
+        // Find HT
+        string ans;
+        int curS = S;
+        for (int i = N; i > 0; i--){
+            bool isH = dp[i][curS].second;
+            ans += (isH? 'H':'T');
+            curS -= (isH? a[i]: b[i]);
 
+        }
+        reverse(all(ans));
+        cout << ans << endl;
+    }
+    
 }

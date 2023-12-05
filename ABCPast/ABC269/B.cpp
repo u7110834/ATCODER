@@ -32,5 +32,28 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N = 10;
+    vector<string> s(N);
+    rep(i,N) cin >> s[i];
+    int a,b,c,d;
+    for (int i = 0; i < 10; i++){
+        for (int j = 0; j < 10; j++){
+            if (s[i][j] == '#'){
+                a = i+1;
+                c = j+1;
+                int len = count(all(s[i]), '#');
+                d = c+len-1;
+                int v = 1;
+                for (int k = i+1; k < 10; k++){
+                    if (s[k][j] != '#') break;
+                    v++;
+                }
+                b = a+v-1;
+                cout << a << " " << b << endl;
+                cout << c << " " << d << endl;
+                return 0;
+                
+            }
+        }
+    }
 }

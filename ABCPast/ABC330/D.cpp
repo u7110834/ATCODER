@@ -30,5 +30,33 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    
+    int N;
+    cin >> N;
+    vector<string> S(N);
+    rep(i,N){
+        cin >> S[i];
+    }
+    vector<int> rcnt(N), ccnt(N);
+    rep(i,N) {
+        rcnt[i] = count(S[i].begin(),S[i].end(),'o');
+    }
+    rep(i,N){
+        int c = 0;
+        rep(j,N) {
+            c += S[j][i] == 'o';
+        }
+        ccnt[i] = c;
+    }
+
+    ll ans = 0;
+    for (int i = 0; i < N; i++){
+        ll cnt = 0;
+        for (int j = 0; j < N; j++){
+            if (S[i][j] == 'o'){
+                cnt += (ll) (rcnt[i] - 1)*(ccnt[j] - 1);
+            }
+        }
+        ans += (ll) cnt;
+    }
+    cout << ans << endl;
 }

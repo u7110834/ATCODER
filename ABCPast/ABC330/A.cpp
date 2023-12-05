@@ -30,5 +30,15 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    
+    int N;
+    cin >> N;
+    int L;
+    cin >> L;
+    int ans =0;
+    rep(i,N){
+        int a;
+        cin >> a;
+        if (a >= L) ans++;
+    }
+    cout << ans << endl;
 }

@@ -32,5 +32,44 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int H, W;
+    cin >> H >> W;
+    vector<string> G(H);
+    rep(i,H) cin >> G[i];
+    vector<vector<bool>> seen(H, vector<bool>(W,0));
+    int x = 0;
+    int y = 0;
+    bool cyclic = true;
+    do {
+        seen[x][y] = true;
+        char c = G[x][y];
+        if (c == 'U'){
+            if (x-1 == -1){
+                cyclic = false;
+                break;
+            }
+            x--;
+        } else if (c == 'D'){
+            if (x+1 == H){
+                cyclic = false;
+                break;
+            }
+            x++;
+        } else if (c == 'L'){
+            if (y-1 == -1){
+                cyclic = false;
+                break;
+            }
+            y--;
+        }else if (c == 'R'){
+            if (y+1 == W){
+                cyclic = false;
+                break;
+            }
+            y++;
+        }
+    } while(!seen[x][y]);
+    
+    if (cyclic) cout << -1 << endl;
+    else cout << x+1 << " " << y+1 << endl;
 }

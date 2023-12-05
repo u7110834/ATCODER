@@ -32,5 +32,30 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N, M;
+    cin >> N >> M;
+    vector<ll> X(N+1),Y(N+1,0);
+    rep1(i,N) cin >> X[i];
+    rep1(i,M) {
+        ll c,y;
+        cin >> c >> y;
+        Y[c] = y;
+    }
+    vector<vector<ll>> dp(N+1, vector<ll>(N+1,0));
+    // i = 1... Nth step
+    // dp[i][s] sth streak dp[i][0] if heads 
+    // dp[i][0] = max dp[i-1][j], j = 0...i-1
+    // if i >= s > 0, dp[i][s] = dp[i][i-1] 
+    ll cur_mx = 0;
+    for (int i = 1; i <= N; i++){
+        dp[i][0] = cur_mx;
+        cur_mx = 0;
+        for (int b = 1; b <= i; b++){
+            dp[i][b] = (ll) dp[i-1][b-1] + Y[b] + X[i];
+            // update cur_mx
+            chmax(cur_mx, dp[i][b]);
+        }   
+    }
 
+    cout << *(max_element(dp[N].begin(),dp[N].end())) << endl;
 }
