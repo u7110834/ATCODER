@@ -54,10 +54,16 @@ int main()
 {   
     vector<int> v = {2,3,4,5,6,1,3,2,4};
     sort(v.begin(),v.end()); // the list needs to be sorted.
+    for (int velem : v){
+        cout << velem << " ";
+    }
+    cout << endl;
     // std::binary_search() only checks if the key is contained
     // in a given vecotor. returns bool
     if (binary_search(v.begin(),v.end(),3))cout << "found 3" << endl;
     else cout << "could not find 3" << endl;
+
+    // 0 indexed
     // std::lower_bound() 
     // 指定した key 以上の要素の内，
     // 一番左側の要素の位置（最小のインデックス）をイテレータで返します
@@ -72,4 +78,7 @@ int main()
     auto position2 = upper_bound(v.begin(),v.end(),4);
     int ind_upper = distance(v.begin(),position2);
     cout << *position2 << " at upper index " << ind_upper << endl; // expected = 7
+
+    // number of elements less than 5;
+    cout << lower_bound(v.begin(),v.end(), 5) - v.begin() << endl; // expected = 
 }

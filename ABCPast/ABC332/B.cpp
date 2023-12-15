@@ -3,8 +3,8 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
+#include <numeric>      // std::iota
 #include <algorithm>
-#include <set>
 using namespace std;
 
 // #include <atcoder/all>
@@ -16,12 +16,15 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -29,15 +32,21 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    set<int> s  = {1,2,3,4};
-    for (auto it = s.begin();it != s.end();it++){
-        cout << *it << endl;
+    int K; cin >> K;
+    int G = 0;
+    int M =0;
+    int gmax,mmax;
+    cin >> gmax >> mmax; // g < m;
+    while(K--){
+        if (G==gmax){
+            G = 0;
+        } else if (M == 0){
+            M = mmax;
+        } else {
+            int prevG = G;
+            G = min(M+G, gmax);
+            M -= G - prevG;
+        }
     }
-    cout << *s.begin() << endl;
-    cout << "rbegin : " << *s.rbegin() << endl;
-    cout << "prev(end) : " << *prev(s.end()) << endl;
-    auto it = s.begin();
-    it--;
-    cout << *it << endl;
-    
+    cout << G << " " << M << endl;
 }

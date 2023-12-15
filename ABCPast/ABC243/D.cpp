@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+// #include <iostream>
+// #include <vector>
+// #include <cctype>
+// #include <cstring>
+// #include <numeric>      // std::iota
+// #include <algorithm>
+using namespace std;
+
+// #include <atcoder/all>
+// using namespace atcoder;
+
+// 第一引数と第二引数を比較し、第一引数(a)をより大きい/小さい値に上書き
+template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
+template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
+
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
+
+auto putline = [](string s = "========"){
+    cout << s << endl;
+};
+
+int main()
+{   
+    int N; cin >> N;
+    ll X;
+    cin >> X;
+    // X to str
+    string s = bitset<64>(X).to_string();
+    for (int i = 0; i < 64; i++){
+        // if (X < (1LL << i)) break;
+        // if (X & 1LL << i){
+        //     s = '1' + s;
+            
+        // } else s = '0'+s; 
+        
+        if (s[i] == '1'){
+            s = s.substr(i, s.size()-i);
+            break;
+        }
+    }
+    // L R, if len = 999 no
+    string S; cin >> S;
+    //const int mx = 99;
+    rep(i,N){
+        char c = S[i];
+        if (c == 'U'){
+            if (s.size() == 1) continue;
+
+            s.pop_back();
+        }
+        if (c == 'L'){
+            //if (s.size() == mx) continue;
+            s.push_back('0');
+        }
+        if (c == 'R'){
+            //if (s.size() == mx) continue;
+            s.push_back('1');
+        }
+    }
+    ll ans = 0;
+    for (int i = s.size()-1; i >= 0; i--){
+        if (s[i] == '1') ans += (1LL << (s.size()-1 - i));
+    }
+    cout << ans << endl;
+}

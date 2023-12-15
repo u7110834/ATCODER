@@ -17,3 +17,26 @@ long long euclidean_gcd(long long a, long long b){
 // eg.
 // gcd(111,30) -> gcd(30,21) -> gcd(30,9) 
 // -> gcd(9,3) -> gcd(3,1) -> gcd(3,0) -> 3
+
+// lcm = ab/gcd
+
+long long lcm(long long a, b){
+    return a*b/gcd(a,b);
+}
+
+
+long long gcd_arr(vector<long long> &a){
+  int n = a.size();
+  for(int i=n-2; i>=0; i--){
+    a[i] = euclidean_gcd(a[i], a[i+1]);
+  }
+  return a.front();
+}
+
+long long lcm_arr(vector<long long> &a){
+  int n = a.size();
+  for(int i=n-2; i>=0; i--){
+    a[i] = lcm(a[i], a[i+1]);
+  }
+  return a.front();
+}

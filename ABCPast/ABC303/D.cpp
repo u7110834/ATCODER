@@ -4,7 +4,6 @@
 #include <cctype>
 #include <cstring>
 #include <algorithm>
-#include <set>
 using namespace std;
 
 // #include <atcoder/all>
@@ -21,7 +20,7 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define ll long long
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -29,15 +28,20 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    set<int> s  = {1,2,3,4};
-    for (auto it = s.begin();it != s.end();it++){
-        cout << *it << endl;
+    ll X,Y,Z;
+    cin >> X >> Y >> Z;
+    string s;
+    cin >> s;
+    int N = s.size();
+    // on or off dp
+    vector dp(300010, vector<ll>(2));
+    // init
+    dp[1][0] = (ll) ((s[0] == 'a')? X : Y);
+    dp[1][1] = Z+min(Y,X);
+    for (int i = 2; i <= N; i++){ // off if 0
+        dp[i][0] = min(dp[i-1][1] + Z + min(X,Y), dp[i-1][0] + ((s[i-1] == 'a')? X : Y) );
+        dp[i][1] = min(dp[i-1][0] + Z + min(X,Y), dp[i-1][1] + ((s[i-1] == 'A')? X : Y) );
     }
-    cout << *s.begin() << endl;
-    cout << "rbegin : " << *s.rbegin() << endl;
-    cout << "prev(end) : " << *prev(s.end()) << endl;
-    auto it = s.begin();
-    it--;
-    cout << *it << endl;
-    
+
+    cout << min(dp[N][0],dp[N][1]) << endl;
 }

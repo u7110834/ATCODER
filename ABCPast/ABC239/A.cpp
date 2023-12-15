@@ -3,6 +3,7 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
+#include <numeric>      // std::iota
 #include <algorithm>
 using namespace std;
 
@@ -13,14 +14,12 @@ using namespace std;
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
 template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
 
-/* accelration */
-// 高速バイナリ生成
-// #pragma GCC target("avx")
-// #pragma GCC optimize("O3")
-// #pragma GCC optimize("unroll-loops")
-
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
+#define Pint(a) pair<int,int>
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -28,13 +27,9 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    int N;
-    cin >> N;
-    string s;
-    cin >> s;
-    vector<int> cnt(N,0);
-    int mn = 0;
-    for (int i = 0 ; i < N;){
-        
-    }
+    long double H;
+    cin >> H;
+    long double ans = sqrt(H*(12800000+H));
+    cout << setprecision(20);
+    cout << ans << endl;
 }

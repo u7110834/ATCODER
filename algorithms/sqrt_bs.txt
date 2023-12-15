@@ -1,0 +1,21 @@
+// smallest integer greater than or equal to sqrt(a);
+long long sqrt_bs(long long a){
+    long long hi = a;
+    long long lo = 1;
+    while (hi - lo > 1){
+        long long mid = (hi+lo)/2;
+        long long mid_sq = mid*mid;
+        if (mid_sq < a){
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    if (lo*lo == a){
+        return lo;
+    } else if (hi*hi == a){
+        return hi;
+    } else {
+        return hi;
+    }
+}

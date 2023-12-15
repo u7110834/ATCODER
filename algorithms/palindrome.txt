@@ -1,0 +1,15 @@
+// Check if s is palindrome
+bool isPalindrome(string s, int n){
+    bool rtn = true;
+    for (int i = 0; i < n; i++){
+        if (n-1-i == i){
+            break;
+        }
+        if (s[i] == s[n-1-i]){
+            rtn = false;
+            break;
+        }
+    }
+    
+    return rtn;
+}

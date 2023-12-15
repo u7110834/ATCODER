@@ -6,3 +6,5 @@ base conversion, corner case when N = 0;
 
 ABC302 B:
 Mendoi
+
+ABC241 D: set.upperbound()

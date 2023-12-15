@@ -14,12 +14,17 @@ using namespace std;
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
 template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
 
+/* accelration */
+// 高速バイナリ生成
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
+
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 #define rall(a) (a).rbegin(), (a).rend()
-#define Pint(a) pair<int,int>
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -27,5 +32,32 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N, M;
+    cin >> N >> M;
+    // M muji
+    string S;
+    cin >> S;
+    // best 
+    int tcnt = 0;
+    int muji = M;
+    int ans = 0;
+    for (int i = 0; i < N; i++){
+        if (S[i] == '1') {
+            if (muji > 0){
+                muji--;
+            } else {
+                tcnt++;
+            }
+        } 
+        if (S[i] == '2'){
+            tcnt++;
+        }
+        if (S[i] == '0'){
+            chmax(ans,tcnt);
+            tcnt = 0;
+            muji = M;
+        }
+    }
+    chmax(ans,tcnt);
+    cout << ans << endl;
 }

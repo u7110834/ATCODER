@@ -19,13 +19,43 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 #define rall(a) (a).rbegin(), (a).rend()
-#define Pint(a) pair<int,int>
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+int num_swaps(string s, string t){
+    int cycles = 0;
+    set<char> seen;
+    for (int i = 0; i < 3; i++){
+        char c = t[i];
+        if (seen.contains(c)) continue;
+        char cur = c;
+        while (!seen.contains(cur)){
+            seen.insert(cur);
+            int next_i = s.find(cur);
+            cur = t[next_i];
+        }
+        cycles++;
+    }
+    return 3-cycles;
+}
+
 int main()
 {   
+    string s;
+    string t;
+    rep(i,3) {
+        char c; cin >> c;
+        s += c;
+    }
+
+    rep(i,3) {
+        char c; cin >> c;
+        t += c;
+    }
+    int m = num_swaps(s,t);
+    if (m % 2 == 0) cout << "Yes" << endl;
+    else cout << "No" << endl;
 
 }

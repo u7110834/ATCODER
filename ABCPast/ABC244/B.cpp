@@ -3,8 +3,8 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
+#include <numeric>      // std::iota
 #include <algorithm>
-#include <set>
 using namespace std;
 
 // #include <atcoder/all>
@@ -14,30 +14,36 @@ using namespace std;
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
 template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
 
-/* accelration */
-// 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
-
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
+int dx[] = {1, 0,-1,0};
+int dy[] = {0,-1,0,1};
 int main()
 {   
-    set<int> s  = {1,2,3,4};
-    for (auto it = s.begin();it != s.end();it++){
-        cout << *it << endl;
+    int x= 0;
+    int y = 0;
+    int d = 0;
+    int N;
+    cin >> N;
+    string s;
+    cin >> s;
+    rep(i,N){
+        char c = s[i];
+        if (c == 'S'){
+            x += dx[d];
+            y += dy[d];
+        } else {
+            d++;
+            d = d % 4;
+        }
     }
-    cout << *s.begin() << endl;
-    cout << "rbegin : " << *s.rbegin() << endl;
-    cout << "prev(end) : " << *prev(s.end()) << endl;
-    auto it = s.begin();
-    it--;
-    cout << *it << endl;
-    
+    cout << x << " " << y << endl;
 }

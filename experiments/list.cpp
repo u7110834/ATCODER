@@ -16,7 +16,5 @@ int main(){
     auto it =unique(a.begin(),a.end());
     a.erase(unique(a.begin(),a.end()),a.end());
     // a.end() 以降を消す
-    cout << a[1] << endl;
-    
-    
+    cout << a[1] << endl; 
 }

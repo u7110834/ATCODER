@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
-#include <iostream>
-#include <vector>
-#include <cctype>
-#include <cstring>
-#include <numeric>      // std::iota
-#include <algorithm>
+// #include <iostream>
+// #include <vector>
+// #include <cctype>
+// #include <cstring>
+// #include <numeric>      // std::iota
+// #include <algorithm>
 using namespace std;
 
 // #include <atcoder/all>
@@ -19,7 +19,6 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 #define rall(a) (a).rbegin(), (a).rend()
-#define Pint(a) pair<int,int>
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -27,5 +26,25 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N;
+    cin >> N;
+    vector<int> A(N), B(N);
+    rep(i,N){
+        cin >> A[i];
+    }
+    rep(i,N){
+        cin >> B[i];
+    }
+    int same = 0;
+    int diff = 0;
+    rep(i,N) rep(j,N){
+        if (A[i] == B[j]){
+            if (i == j){
+                same++;
+            } else diff++;
+        }
+    }
 
+    cout << same << endl;
+    cout << diff << endl;
 }

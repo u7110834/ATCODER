@@ -3,8 +3,8 @@
 #include <vector>
 #include <cctype>
 #include <cstring>
+#include <numeric>      // std::iota
 #include <algorithm>
-#include <set>
 using namespace std;
 
 // #include <atcoder/all>
@@ -16,12 +16,15 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 /* accelration */
 // 高速バイナリ生成
-#pragma GCC target("avx")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define lint long long
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -29,15 +32,24 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-    set<int> s  = {1,2,3,4};
-    for (auto it = s.begin();it != s.end();it++){
-        cout << *it << endl;
+    int N,K,Q;
+    cin >> N >> K >> Q;
+    vector<int> pos(K);
+    for (int i = 0; i < K; i++){
+        cin >> pos[i];
     }
-    cout << *s.begin() << endl;
-    cout << "rbegin : " << *s.rbegin() << endl;
-    cout << "prev(end) : " << *prev(s.end()) << endl;
-    auto it = s.begin();
-    it--;
-    cout << *it << endl;
-    
+    while(Q--){
+        int l; cin >> l;
+        l--;
+        if (pos[l] == N) continue;
+        else if (l == K-1){
+            pos[l]++;
+        } else if (pos[l]+1 != pos[l+1]){
+            pos[l]++;
+        }
+    }
+    for (int p : pos){
+        cout << p << " ";
+    }
+    cout << endl;
 }

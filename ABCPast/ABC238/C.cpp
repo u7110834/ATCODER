@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
-#include <iostream>
-#include <vector>
-#include <cctype>
-#include <cstring>
-#include <numeric>      // std::iota
-#include <algorithm>
+// #include <iostream>
+// #include <vector>
+// #include <cctype>
+// #include <cstring>
+// #include <numeric>      // std::iota
+// #include <algorithm>
 using namespace std;
 
 // #include <atcoder/all>
@@ -19,13 +19,29 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 #define rall(a) (a).rbegin(), (a).rend()
-#define Pint(a) pair<int,int>
 
-auto putline = [](string s = "========"){
-    cout << s << endl;
-};
-
-int main()
-{   
-
+#define mod 998244353
+#define inv2 499122177
+long long triangular_number(long long x){
+  x%=mod;
+  long long res=x;
+  res*=(x+1);res%=mod;
+  res*=inv2;res%=mod;
+  return res;
+}
+int main(){
+  long long n;
+  cin >> n;
+  
+  long long res=0;
+  long long p10=10;
+  for(int dg=1;dg<=18;dg++){
+    long long l=p10/10;
+    long long r=min(n,p10-1);
+    if(l<=r){res+=triangular_number(r-l+1);res%=mod;}
+    p10*=10;
+  }
+  
+  cout << res << '\n';
+  return 0;
 }

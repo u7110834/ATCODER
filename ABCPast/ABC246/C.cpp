@@ -14,12 +14,17 @@ using namespace std;
 template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
 template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
 
+/* accelration */
+// 高速バイナリ生成
+// #pragma GCC target("avx")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("unroll-loops")
+
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 #define rall(a) (a).rbegin(), (a).rend()
-#define Pint(a) pair<int,int>
 
 auto putline = [](string s = "========"){
     cout << s << endl;
@@ -27,5 +32,29 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    ll N,K,X;
+    cin >> N >> K >> X;
+
+    ll ans = 0;
+    vector<ll> A(N);
+    rep(i,N) cin >> A[i];
+    rep(i,N) ans += A[i];
+    vector<ll> rem(N);
+    ll maxK = 0;
+    rep(i,N){
+        maxK += A[i]/X;
+        rem[i] = A[i] % X;
+    }
+    if (maxK >= K){
+        cout << ans - (ll) K*X << endl;
+    } else{
+        sort(all(rem), greater<int>());
+        ans -= (ll) maxK*X;
+        for (int i = 0; i < min(K-maxK, N); i++){
+            ans -= rem[i];
+        }
+        cout << ans << endl;
+        // min rems
+    }
 
 }

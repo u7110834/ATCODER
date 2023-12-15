@@ -1,0 +1,15 @@
+int num_swaps(vector<int> s, vector<int> t, int n){
+    int cycles = 0;
+    set<int> seen;
+    for (int i = 0; i < n; i++){
+        if (seen.contains(t[i])) continue;
+        int cur = t[i];
+        while (!seen.contains(cur)){
+            seen.insert(cur);
+            int next_i = s.find(cur);
+            cur = t[next_i];
+        }
+        cycles++;
+    }
+    return n-cycles;
+}
