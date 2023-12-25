@@ -28,5 +28,24 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int K,N;cin >> N >> K;
+    vector<int> s(N);
+    map<int,int> lad;
+    for (int i = 0; i < N; i++){
+        int a,b,c;cin >> a >> b >> c;
+        s[i] = a+b+c;
+        lad[s[i]]++;
+    }
 
+    for (int i = 0; i < N; i++){
+        int b = 0;
+        for (auto it = lad.rbegin(); it != lad.rend(); it++){
+            if ((*it).first > s[i]+300){
+                b += (*it).second;
+            } else break;
+        }
+        b++;
+        if (b <= K) cout << "Yes" << endl;
+        else cout << "No" << endl;
+    }
 }

@@ -28,5 +28,14 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    ll N; cin >> N;
+    ll ans = 0;
+    for (ll i = 1; i*i*i <= N; i++){
+        ll BC = N / i;
+        for (ll j = i; j*j <= BC; j++){
+            ll C = BC / j;
+            ans += C - j + 1;
+        }
+    }
+    cout << ans << endl;
 }

@@ -28,5 +28,25 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N, M; cin >> N >> M;
+    vector mat(N, vector<int>(M));
+    rep(i,N) rep(j, M) cin >> mat[i][j];
+    bool ok = true;
+    if ((mat[0][0]-1) % 7 > 7-M) ok = false;
+    for (int i = 0; i < N; i++){
+        for (int j = 1; j < M; j++){
+            if (mat[i][j] != mat[i][j-1] + 1){
+                ok = false;
+            }
+        }
+    }
 
+    for (int j = 0; j < M; j++){
+        for (int i = 1; i < N; i++){
+            if (mat[i][j] != mat[i-1][j] + 7){
+                ok = false;
+            }
+        }
+    }
+    cout << (ok? "Yes" : "No") << endl;
 }

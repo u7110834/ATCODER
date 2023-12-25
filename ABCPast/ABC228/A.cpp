@@ -28,5 +28,17 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int s,t,x; cin >> s >> t >> x;
+    s = s*60;
+    t = t*60;
+    x = x*60+30;
+    if (t < s){
+        if (s <= x || x <= t) {
+            cout << "Yes" << endl;
+        } else cout << "No" << endl;
+    } else {
+        if (s <= x && x <= t) {
+            cout << "Yes" << endl;
+        } else cout << "No" << endl;
+    }
 }

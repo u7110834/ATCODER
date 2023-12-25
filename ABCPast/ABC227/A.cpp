@@ -28,5 +28,12 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N, K, A;
+    cin >> N >> K >> A;
+    K--;
+    K = K % N;
+    K = A+K;
+    if (K > N){
+        cout << K - N << endl;
+    } else cout << K << endl;
 }

@@ -28,5 +28,16 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
+    int N; cin >> N;
+    vector<int> deg(N);
+    rep(i, N - 1){
+        int a, b; cin >> a >> b;
+        a--; b--;
+        deg[a]++;
+        deg[b]++;
+    }
+    bool ok = false;
+    rep(i,N) if (deg[i] == N-1) ok = true;
 
+    cout << (ok? "Yes" : "No") << endl;
 }

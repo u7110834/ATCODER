@@ -28,5 +28,13 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    set<vector<int>> s;
+    int N; cin >> N;
+    for (int i = 0; i < N; i++){
+        int l; cin >> l;
+        vector<int> a(l);
+        rep(i,l) cin >> a[i];
+        s.insert(a);
+    }
+    cout << s.size() << endl;
 }

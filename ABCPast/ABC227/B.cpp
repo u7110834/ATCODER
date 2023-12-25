@@ -28,5 +28,19 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N; cin >> N;
+    vector<int> s(N);
+    rep(i,N) cin >> s[i];
+    set<int> correct;
+    for (int i = 1; i < 1000; i++){
+        for (int j = 1; j < 1000; j++){
+            int area = 4*i*j+3*i+3*j;
+            correct.insert(area);
+        }
+    }
+    int ans = 0;
+    rep(i,N){
+        if (!correct.contains(s[i])) ans++;
+    }
+    cout << ans << endl;
 }

@@ -28,5 +28,26 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N,X;
+    cin >> N >> X; X--;
+    int ans = 1;
+    vector<int> a(N);
+    rep(i,N) {
+        int b;
+        cin >> b;
+        b--;
+        a[i] = b;
+    }
+    vector<int> seen(N,0);
+    seen[X] = true;
+    int cur = X;
+    while(true){
+        if (seen[a[cur]]){
+            break;
+        }
+        ans++;
+        cur = a[cur];
+        seen[cur] = true;
+    }
+    cout << ans << endl;
 }

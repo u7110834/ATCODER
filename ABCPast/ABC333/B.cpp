@@ -21,12 +21,19 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #define rall(a) (a).rbegin(), (a).rend()
 #define Pint pair<int,int>
 
-const ll infl = 1 << 62;
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
 int main()
 {   
-
+    string s,t;
+    cin >> s >> t;
+    int diffs = abs(s[1] - s[0]);
+    bool far = (diffs == 2 || diffs == 3);
+    int difft = abs(t[1] - t[0]);
+    bool far2 = (difft == 2 || difft == 3);
+    if (far == far2){
+        cout << "Yes" << endl;
+    } else cout << "No" << endl;
 }

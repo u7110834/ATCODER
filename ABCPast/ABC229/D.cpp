@@ -28,5 +28,9 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N; cin >> N;
+    int cnt = 0;
+    string s;
+    cnt = count(all(s), '.');
+    
 }

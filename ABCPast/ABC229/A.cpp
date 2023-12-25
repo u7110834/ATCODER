@@ -28,5 +28,9 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    string s,t;
+    cin >> s >> t;
+    if ((s[0] == '.' && t[1] == '.') || (s[1] == '.' && t[0] == '.')){
+        cout << "No" << endl;
+    } else cout << "Yes" << endl;
 }

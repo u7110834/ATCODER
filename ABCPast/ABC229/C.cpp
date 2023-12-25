@@ -28,5 +28,26 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    int N,W;cin >> N >> W;
+    ll ans = 0;
+    map<ll,ll> mp;
+    for (int i = 0; i < N; i++){
+        ll a,b; cin >> a >> b;
+        mp[a] += b;
+    }
+    int rem = W;
+    auto it = mp.rbegin();
+    while (it != mp.rend()){
+        ll a = (*it).first;
+        ll b = (*it).second;
+        if (rem >= b){
+            ans += a*b;
+            rem -= b;
+        } else {
+            ans += a * rem;
+            break;
+        }
+        it++;
+    }
+    cout << ans << endl;
 }

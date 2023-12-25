@@ -21,12 +21,26 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 #define rall(a) (a).rbegin(), (a).rend()
 #define Pint pair<int,int>
 
-const ll infl = 1 << 62;
+const ll infl = 1LL << 62;
 auto putline = [](string s = "========"){
     cout << s << endl;
 };
 
 int main()
 {   
-
+    ll A,M,L,R; cin >> A >> M >> L >> R;
+    L -= A;
+    R -= A;
+    ll left, right;
+    left = ((ll) L/M) * M;
+    right = ((ll) R/M)*M;
+    //if (right < 0) right -= M;
+    if (R < 0 && R % M != 0) right -= M;
+    if (L > 0 && L % M != 0) left += M;
+    if (left > right) {
+        cout << 0 << endl;
+        return 0;
+    }
+    ll ans = (right - left)/M + 1;
+    cout << ans << endl;
 }

@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cctype>
+#include <cstring>
+#include <numeric>      // std::iota
+#include <algorithm>
+using namespace std;
+
+#include <atcoder/all>
+using namespace atcoder;
+
+// 第一引数と第二引数を比較し、第一引数(a)をより大きい/小さい値に上書き
+template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b; if (a > b) a = b; return compare;}
+template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
+
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+#define ll long long
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
+#define Pint pair<int,int>
+
+int main()
+{   
+    int N;
+    cin >> N;
+    vector<vector<int>> g(N);
+    rep(i, N-1){
+        int u,v;
+        cin >> u >> v;
+        u--;v--;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+
+    // bfs 
+    int ans = 0;
+    int mx = 0;
+    for (int v : g[0]){
+        queue<int> que;
+        que.push(v);
+        vector<bool> seen(N,0);
+        seen[v] = 1;
+        seen[0] = 1;
+        int cnt = 1;
+        while(!que.empty()){
+            int fr = que.front();
+            que.pop();
+            for (int next : g[fr]){
+                if (seen[next]) continue;
+                seen[next] = 1;
+                que.push(next);
+                cnt++;
+            }
+        }
+        chmax(mx,cnt);
+        ans += cnt;
+    }
+    ans -= mx;
+    ans++;
+    cout << ans << endl;
+}

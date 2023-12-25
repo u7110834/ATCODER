@@ -28,5 +28,14 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
-}
+    string s,t; cin >> s >> t;
+    int N = min(s.size(),t.size());
+    bool ok = true;
+    for (int i = 0; i < N; i++){
+        int a = s[i] - '0';
+        int b = t[i] - '0';
+        if (a+b > 9) ok = false;
+    }
+    if (ok) cout << "Easy" << endl;
+    else cout << "Hard" << endl;
+ }

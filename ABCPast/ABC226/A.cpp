@@ -28,5 +28,7 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    double X; cin >> X;
+    int ans = round(X);
+    cout << ans << endl;
 }

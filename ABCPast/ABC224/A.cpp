@@ -28,5 +28,15 @@ auto putline = [](string s = "========"){
 
 int main()
 {   
-
+    string s;
+    cin >> s;
+    int N = s.size();
+    if (s.substr(N - 2, 2) == "er") {
+        cout << "er" << endl;
+        return 0;
+    }
+    
+    if (s.substr(N - 3,3) == "ist"){
+        cout << "ist" << endl;
+    }
 }
